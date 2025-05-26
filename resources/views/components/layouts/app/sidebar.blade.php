@@ -12,22 +12,37 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                </flux:navlist.group>
+                @if(auth()->user()?->role === 'PETANI')
+                    <flux:navlist.group :heading="__('Menus')" class="grid">
+                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="briefcase" :href="route('petani.kirim.penawaran')" :current="request()->routeIs('petani.kirim.penawaran')" wire:navigate>{{ __('Kirim Penawaran') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="newspaper" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Riwayat Penawaran') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="document" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Riwayat Pembayaran') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="document-currency-dollar" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Invoice') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                @elseif(auth()->user()?->role === 'PABRIK')
+                    <flux:navlist.group :heading="__('Platform')" class="grid">
+                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                @elseif(auth()->user()?->role === 'ADMIN')
+                    <flux:navlist.group :heading="__('Platform')" class="grid">
+                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('login')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                @endif
             </flux:navlist>
 
             <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="bottom" align="start">
