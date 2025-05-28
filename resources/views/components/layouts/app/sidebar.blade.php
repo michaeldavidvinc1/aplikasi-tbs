@@ -20,7 +20,7 @@
                         <flux:navlist.item icon="briefcase" :href="route('petani.kirim.penawaran')" :current="request()->routeIs('petani.kirim.penawaran')" wire:navigate>{{ __('Kirim Penawaran') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="newspaper" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Riwayat Penawaran') }}</flux:navlist.item>
+                        <flux:navlist.item icon="newspaper" :href="route('petani.riwayat.penawaran')" :current="request()->routeIs('petani.riwayat.penawaran')" wire:navigate>{{ __('Riwayat Penawaran') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
                         <flux:navlist.item icon="document" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Riwayat Pembayaran') }}</flux:navlist.item>
