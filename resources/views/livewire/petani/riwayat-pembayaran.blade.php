@@ -1,12 +1,12 @@
 <div class="flex flex-col gap-8">
     <div class="flex justify-between items-center mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-600">Riwayat Penawaran</h1>
+            <h1 class="text-2xl font-bold text-gray-600">Riwayat Pembayaran</h1>
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="#" separator="slash">Dashboard</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item separator="slash">Riwayat Penawaran</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item separator="slash">Riwayat Pembayaran</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
     </div>
@@ -16,8 +16,7 @@
             <flux:select wire:model.live="status" placeholder="Pilih Status...">
                 <option value="">Semua</option>
                 <option value="menunggu">Menunggu</option>
-                <option value="setuju">Setuju</option>
-                <option value="ditolak">Ditolak</option>
+                <option value="sukses">Sukses</option>
             </flux:select>
         </div>
 
@@ -34,24 +33,25 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">#</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Berat</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kualitas</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Lokasi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Harga Beli</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Total Harga</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600">Tanggal</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
-                @forelse ($penawarans as $index => $item)
+                @forelse ($pembayarans as $index => $item)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $penawarans->firstItem() + $index }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->berat }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->kualitas }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->lokasi }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $pembayarans->firstItem() + $index }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->berat }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->kualitas }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->harga_beli }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->total_bayar }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @php
                                 $color = match($item->status) {
                                     'menunggu' => 'bg-gray-100 text-gray-800',
-                                    'terima' => 'bg-green-100 text-green-800',
-                                    'tolak' => 'bg-red-100 text-red-800',
+                                    'sukses' => 'bg-green-100 text-green-800',
                                     default => 'bg-gray-100 text-gray-800',
                                 };
                             @endphp
@@ -63,7 +63,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">Tidak ada data penawaran.</td>
+                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada data riwayat pembayaran.</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="mt-4">
-            {{ $penawarans->links() }}
+            {{ $pembayarans->links() }}
         </div>
     </div>
 </div>

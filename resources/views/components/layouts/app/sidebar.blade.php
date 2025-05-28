@@ -23,10 +23,10 @@
                         <flux:navlist.item icon="newspaper" :href="route('petani.riwayat.penawaran')" :current="request()->routeIs('petani.riwayat.penawaran')" wire:navigate>{{ __('Riwayat Penawaran') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="document" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Riwayat Pembayaran') }}</flux:navlist.item>
+                        <flux:navlist.item icon="document" :href="route('petani.riwayat.pembayaran')" :current="request()->routeIs('petani.riwayat.pembayaran')" wire:navigate>{{ __('Riwayat Pembayaran') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="document-currency-dollar" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Invoice') }}</flux:navlist.item>
+                        <flux:navlist.item icon="document-currency-dollar" :href="route('petani.salur')" :current="request()->routeIs('petani.salur')" wire:navigate>{{ __('Invoice') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'PABRIK')
                     <flux:navlist.group :heading="__('Platform')" class="grid">
