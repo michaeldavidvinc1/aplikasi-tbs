@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(TbsOffer::class, 'offer_id');
             $table->integer('harga_beli');
             $table->integer('total_bayar');
-            $table->enum('status', array('menunggu', 'sukses'))->default('menunggu');
+            $table->enum('status', array('belum bayar', 'sudah bayar'))->default('belum bayar');
             $table->timestamps();
         });
     }

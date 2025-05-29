@@ -26,6 +26,8 @@ class RiwayatPenawaran extends Component
             ->paginate(10);
     }
 
+
+
     public function render()
     {
         return view('livewire.petani.riwayat-penawaran', [

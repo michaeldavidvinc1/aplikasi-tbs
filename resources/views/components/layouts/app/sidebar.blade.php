@@ -8,7 +8,7 @@
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
-                <x-app-logo />
+                Aplikasi TBS
             </a>
 
             <flux:navlist variant="outline">
@@ -29,15 +29,39 @@
                         <flux:navlist.item icon="document-currency-dollar" :href="route('petani.salur')" :current="request()->routeIs('petani.salur')" wire:navigate>{{ __('Invoice') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'PABRIK')
-                    <flux:navlist.group :heading="__('Platform')" class="grid">
-                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    </flux:navlist.group>
-                @elseif(auth()->user()?->role === 'ADMIN')
-                    <flux:navlist.group :heading="__('Platform')" class="grid">
+                    <flux:navlist.group :heading="__('Menus')" class="grid">
                         <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('login')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                        <flux:navlist.item icon="archive-box-arrow-down" :href="route('pabrik.penawaran.masuk')" :current="request()->routeIs('pabrik.penawaran.masuk')" wire:navigate>{{ __('Penawaran Masuk') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="document-check" :href="route('pabrik.transaksi.aktif')" :current="request()->routeIs('pabrik.transaksi.aktif')" wire:navigate>{{ __('Transaksi Aktif') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="banknotes" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Riwayat Pembelian') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                @elseif(auth()->user()?->role === 'ADMIN')
+                    <flux:navlist.group :heading="__('Menus')" class="grid">
+                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="currency-dollar" :href="route('admin.harga.tbs')" :current="request()->routeIs('admin.harga.tbs')" wire:navigate>{{ __('Harga TBS') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="users" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Manajemen User') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="archive-box" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Semua Penawaran') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="shopping-bag" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Semua Transaksi') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="wallet" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Semua Invoice') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="document-arrow-down" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Laporan Bulanan') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @endif
             </flux:navlist>
@@ -144,5 +168,24 @@
 
         @fluxScripts
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Livewire.on('confirmDelete', id => {
+                Swal.fire({
+                    title: 'Yakin mau hapus?',
+                    text: "Data ini akan hilang permanen!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e3342f',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit('deleteConfirmed', id)
+                    }
+                })
+            })
+        </script>
     </body>
 </html>

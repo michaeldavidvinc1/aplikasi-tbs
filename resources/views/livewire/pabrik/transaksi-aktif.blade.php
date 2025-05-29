@@ -1,25 +1,16 @@
 <div class="flex flex-col gap-8">
     <div class="flex justify-between items-center mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-600">Riwayat Pembayaran</h1>
+            <h1 class="text-2xl font-bold text-gray-600">Aktif Transaksi</h1>
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="#" separator="slash">Dashboard</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item separator="slash">Riwayat Pembayaran</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item separator="slash">Aktif Transaksi</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
     </div>
     <div class="mb-6 flex items-center gap-4">
-        <div class="flex flex-col gap-2">
-            <label class="block text-sm font-medium ">Status</label>
-            <flux:select wire:model.live="status" placeholder="Pilih Status...">
-                <option value="">Semua</option>
-                <option value="belum bayar">Belum Bayar</option>
-                <option value="sudah bayar">Sudah Bayar</option>
-            </flux:select>
-        </div>
-
         <div class="flex flex-col gap-2">
             <label class="block text-sm font-medium ">Tanggal</label>
             <flux:input type="date" wire:model.live="tanggal" />
@@ -40,9 +31,9 @@
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
-                @forelse ($pembayarans as $index => $item)
+                @forelse ($transaksis as $index => $item)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $pembayarans->firstItem() + $index }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $transaksis->firstItem() + $index }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->berat }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->kualitas }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->harga_beli }}</td>
@@ -63,7 +54,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada data riwayat pembayaran.</td>
+                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada data aktif transaksi.</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -71,7 +62,7 @@
         </div>
 
         <div class="mt-4">
-            {{ $pembayarans->links() }}
+            {{ $transaksis->links() }}
         </div>
     </div>
 </div>
