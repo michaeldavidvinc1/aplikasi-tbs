@@ -39,7 +39,7 @@
                         <flux:navlist.item icon="document-check" :href="route('pabrik.transaksi.aktif')" :current="request()->routeIs('pabrik.transaksi.aktif')" wire:navigate>{{ __('Transaksi Aktif') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="banknotes" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Riwayat Pembelian') }}</flux:navlist.item>
+                        <flux:navlist.item icon="banknotes" :href="route('pabrik.riwayat.pembelian')" :current="request()->routeIs('pabrik.riwayat.pembelian')" wire:navigate>{{ __('Riwayat Pembelian') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'ADMIN')
                     <flux:navlist.group :heading="__('Menus')" class="grid">

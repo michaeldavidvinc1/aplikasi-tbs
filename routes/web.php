@@ -3,6 +3,7 @@
 use App\Http\Middleware\CheckRole;
 use App\Livewire\Admin\HargaTbs;
 use App\Livewire\Pabrik\PenawaranMasuk;
+use App\Livewire\Pabrik\RiwayatPembelian;
 use App\Livewire\Pabrik\TransaksiAktif;
 use App\Livewire\Petani\Invoice;
 use App\Livewire\Petani\KirimPenawaran;
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('pabrik')->middleware('CheckRole:PABRIK')->group(function () {
         Route::get('penawaran-masuk', PenawaranMasuk::class)->name('pabrik.penawaran.masuk');
         Route::get('transaksi-aktif', TransaksiAktif::class)->name('pabrik.transaksi.aktif');
+        Route::get('riwayat-pembelian', RiwayatPembelian::class)->name('pabrik.riwayat.pembelian');
     });
 
     Route::prefix('admin')->middleware('CheckRole:ADMIN')->group(function () {
