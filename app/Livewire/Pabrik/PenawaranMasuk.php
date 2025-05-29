@@ -62,7 +62,7 @@ class PenawaranMasuk extends Component
             $offer->status = 'terima';
             $offer->save();
 
-            $harga = HargaTbs::where('berlaku', '>', Carbon::now())->first();
+            $harga = HargaTbs::where('berlaku', '>', Carbon::now())->latest()->first();
 
             if(!$harga){
                 throw new \Exception('Harga tidak ditemukan');
