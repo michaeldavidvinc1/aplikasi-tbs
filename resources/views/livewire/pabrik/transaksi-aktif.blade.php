@@ -28,6 +28,7 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Total Harga</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Status</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Action</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
@@ -51,10 +52,13 @@
                             </span>
                         </td>
                         <td class="px-6 py-4">{{ $item->created_at->format('d M Y') }}</td>
+                        <td class="px-6 py-4">
+                            <flux:button size="sm" class="text-xs" wire:click="bayar({{ $item->id }})" >Bayar</flux:button>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada data aktif transaksi.</td>
+                        <td colspan="8" class="px-6 py-4 text-center text-gray-500">Tidak ada data aktif transaksi.</td>
                     </tr>
                 @endforelse
                 </tbody>
