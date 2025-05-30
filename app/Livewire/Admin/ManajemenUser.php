@@ -123,4 +123,5 @@ class ManajemenUser extends Component
             'users' => $this->allUser,
         ]);
     }
+
 }
