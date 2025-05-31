@@ -6,6 +6,7 @@ use App\Models\HargaTbs;
 use App\Models\TbsOffer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 

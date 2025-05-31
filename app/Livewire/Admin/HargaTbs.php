@@ -6,6 +6,7 @@ use App\Models\TbsOffer;
 use App\Models\HargaTbs as HargaTbsModel;
 use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 

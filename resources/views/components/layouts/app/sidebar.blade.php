@@ -13,7 +13,7 @@
 
             <flux:navlist variant="outline">
                 @if(auth()->user()?->role === 'PETANI')
-                    <flux:navlist.group :heading="__('Menus')" class="grid">
+                    <flux:navlist.group :heading="__('Menu')" class="grid">
                         <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
@@ -29,7 +29,7 @@
                         <flux:navlist.item icon="document-currency-dollar" :href="route('petani.salur')" :current="request()->routeIs('petani.salur')" wire:navigate>{{ __('Invoice') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'KOPERASI')
-                    <flux:navlist.group :heading="__('Menus')" class="grid">
+                    <flux:navlist.group :heading="__('Menu')" class="grid">
                         <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
@@ -42,7 +42,7 @@
                         <flux:navlist.item icon="banknotes" :href="route('koperasi.riwayat.pembelian')" :current="request()->routeIs('koperasi.riwayat.pembelian')" wire:navigate>{{ __('Riwayat Pembelian') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'ADMIN')
-                    <flux:navlist.group :heading="__('Menus')" class="grid">
+                    <flux:navlist.group :heading="__('Menu')" class="grid">
                         <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">

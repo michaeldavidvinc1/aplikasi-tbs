@@ -59,9 +59,6 @@ class TransaksiAktif extends Component
                 ->withCancelButton('OK')
                 ->show();
         }
-
-
-
     }
 
     public function render()
