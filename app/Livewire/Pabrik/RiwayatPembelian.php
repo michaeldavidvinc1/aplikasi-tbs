@@ -17,7 +17,7 @@ class RiwayatPembelian extends Component
     #[\Livewire\Attributes\Computed]
     public function transaksi()
     {
-        return Transaksi::with('offer')
+        return Transaksi::with('offer.user')
             ->where('status', 'sudah bayar')
             ->when($this->tanggal, fn($q) => $q->whereDate('created_at', Carbon::parse($this->tanggal)))
             ->latest()
