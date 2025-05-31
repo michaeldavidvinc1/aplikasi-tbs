@@ -52,7 +52,7 @@
                         <flux:navlist.item icon="users" :href="route('admin.manajemen.user')" :current="request()->routeIs('admin.manajemen.user')" wire:navigate>{{ __('Manajemen User') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="archive-box" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Semua Penawaran') }}</flux:navlist.item>
+                        <flux:navlist.item icon="archive-box" :href="route('admin.semua.penawaran')" :current="request()->routeIs('admin.semua.penawaran')" wire:navigate>{{ __('Semua Penawaran') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
                         <flux:navlist.item icon="shopping-bag" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Semua Transaksi') }}</flux:navlist.item>

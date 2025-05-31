@@ -62,7 +62,7 @@
                         <td class="px-6 py-4">{{ $item->created_at->format('d M Y') }}</td>
                         <td class="px-6 py-4 flex gap-4">
                             <flux:modal.trigger name="change-password">
-                                <flux:button size="sm" class="text-xs" wire:click="edit({{ $item->id }})">Change
+                                <flux:button size="sm" class="text-xs" wire:click="$set('selectedId', {{ $item->id }})">Change
                                     Password
                                 </flux:button>
                             </flux:modal.trigger>
@@ -96,14 +96,35 @@
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">Ganti Password</flux:heading>
-                <flux:text class="mt-2">Enter a new password to update account security.</flux:text>
+                <flux:text class="mt-2">Masukkan kata sandi baru untuk memperbarui keamanan akun.</flux:text>
             </div>
-            <flux:input label="Name" placeholder="Your name"/>
-            <flux:input label="Date of birth" type="date"/>
-            <div class="flex">
-                <flux:spacer/>
-                <flux:button type="submit" variant="primary">Save changes</flux:button>
-            </div>
+            <form wire:submit.prevent="changePassword({{$selectedId}})" class="flex flex-col gap-4">
+                <flux:field>
+                    <flux:label>Password Baru</flux:label>
+                    <flux:input
+                        wire:model="password"
+                        type="password"
+                        required
+                        viewable
+                    />
+                    <flux:error name="password" />
+                </flux:field>
+                <flux:field>
+                    <flux:label>Konfirmasi Password Baru</flux:label>
+                    <flux:input
+                        wire:model="confirmation_password"
+                        type="password"
+                        required
+                        viewable
+                    />
+                    <flux:error name="confirmation_password" />
+                </flux:field>
+
+                <div class="flex">
+                    <flux:spacer/>
+                    <flux:button type="submit" variant="primary">Simpan Perubahan</flux:button>
+                </div>
+            </form>
         </div>
     </flux:modal>
     <flux:modal name="user" variant="flyout">

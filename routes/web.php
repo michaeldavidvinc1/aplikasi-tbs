@@ -3,6 +3,7 @@
 use App\Http\Middleware\CheckRole;
 use App\Livewire\Admin\HargaTbs;
 use App\Livewire\Admin\ManajemenUser;
+use App\Livewire\Admin\SemuaPenawaran;
 use App\Livewire\Pabrik\PenawaranMasuk;
 use App\Livewire\Pabrik\RiwayatPembelian;
 use App\Livewire\Pabrik\TransaksiAktif;
@@ -40,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->middleware('CheckRole:ADMIN')->group(function () {
         Route::get('harga-tbs', HargaTbs::class)->name('admin.harga.tbs');
         Route::get('user', ManajemenUser::class)->name('admin.manajemen.user');
+        Route::get('semua-penawaran', SemuaPenawaran::class)->name('admin.semua.penawaran');
     });
 
     Route::redirect('settings', 'settings/profile');

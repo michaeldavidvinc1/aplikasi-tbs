@@ -113,8 +113,6 @@ class ManajemenUser extends Component
                 ->withCancelButton('OK')
                 ->show();
         }
-
-
     }
 
     public function destroy($id)
@@ -128,6 +126,30 @@ class ManajemenUser extends Component
             Flux::modal('delete-data')->close();
             DB::commit();
             toastr()->success('User data berhasil di hapus');
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
+    }
+
+    public function changePassword($id)
+    {
+        $this->mode = 'change-password';
+        $this->validate();
+        DB::beginTransaction();
+        try {
+            $data = User::findOrFail($id);
+            $data->update(['password' => Hash::make($this->password)]);
+
+            Flux::modal('change-password')->close();
+            DB::commit();
+            toastr()->success('Password berhasil diperbarui');
+            $this->resetForm();
         } catch (\Exception $ex){
             DB::rollback();
             \Log::error('Error: ' . $ex->getMessage());
