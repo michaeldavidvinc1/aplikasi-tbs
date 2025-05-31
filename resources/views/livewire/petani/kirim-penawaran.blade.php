@@ -5,7 +5,7 @@
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
-                <flux:breadcrumbs.item href="#" separator="slash">Dashboard</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item href="#" separator="slash">Beranda</flux:breadcrumbs.item>
                 <flux:breadcrumbs.item separator="slash">Kirim Penawaran</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
@@ -13,13 +13,18 @@
     <div class="">
         <form wire:submit.prevent="save" class="space-y-6 max-w-xl w-full">
             <flux:field>
-                <flux:label>Berat</flux:label>
-                <flux:input type="number" wire:model.defer="berat" />
-                <flux:error name="berat" />
+                <flux:label>Harga TBS</flux:label>
+                <flux:input type="number" value="{{$harga->harga_per_kilo}}" disabled />
             </flux:field>
 
             <flux:field>
-                <flux:label>Kualitas</flux:label>
+                <flux:label>Tonase</flux:label>
+                <flux:input type="number" wire:model.defer="tonase" />
+                <flux:error name="tonase" />
+            </flux:field>
+
+            <flux:field>
+                <flux:label>Kualitas TBS</flux:label>
                 <flux:input type="text" wire:model.defer="kualitas" />
                 <flux:error name="kualitas" />
             </flux:field>

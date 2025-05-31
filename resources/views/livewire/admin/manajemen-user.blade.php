@@ -5,7 +5,7 @@
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
-                <flux:breadcrumbs.item href="#" separator="slash">Dashboard</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item href="#" separator="slash">Beranda</flux:breadcrumbs.item>
                 <flux:breadcrumbs.item separator="slash">Manajemen User</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
@@ -17,7 +17,7 @@
                 <option value="">Semua</option>
                 <option value="PETANI">Petani</option>
                 <option value="ADMIN">Admin</option>
-                <option value="PABRIK">Pabrik</option>
+                <option value="KOPERASI">Koperasi</option>
             </flux:select>
         </div>
         <flux:modal.trigger name="user">
@@ -51,7 +51,7 @@
                                 $color = match($item->role) {
                                     'PETANI' => 'bg-gray-100 text-gray-800',
                                     'ADMIN' => 'bg-green-100 text-green-800',
-                                    'PABRIK' => 'bg-blue-100 text-blue-800',
+                                    'KOPERASI' => 'bg-blue-100 text-blue-800',
                                     default => 'bg-gray-100 text-gray-800',
                                 };
                             @endphp
@@ -118,7 +118,7 @@
                 <flux:select label="Role" wire:model.defer="role" placeholder="Pilih Role...">
                     <option value="PETANI">Petani</option>
                     <option value="ADMIN">Admin</option>
-                    <option value="PABRIK">Pabrik</option>
+                    <option value="KOPERASI">Koperasi</option>
                 </flux:select>
                 @if($mode !== 'edit')
                     <flux:input

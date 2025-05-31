@@ -31,10 +31,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('invoice', Invoice::class)->name('petani.salur');
     });
 
-    Route::prefix('pabrik')->middleware('CheckRole:PABRIK')->group(function () {
-        Route::get('penawaran-masuk', PenawaranMasuk::class)->name('pabrik.penawaran.masuk');
-        Route::get('transaksi-aktif', TransaksiAktif::class)->name('pabrik.transaksi.aktif');
-        Route::get('riwayat-pembelian', RiwayatPembelian::class)->name('pabrik.riwayat.pembelian');
+    Route::prefix('koperasi')->middleware('CheckRole:KOPERASI')->group(function () {
+        Route::get('penawaran-masuk', PenawaranMasuk::class)->name('koperasi.penawaran.masuk');
+        Route::get('transaksi-aktif', TransaksiAktif::class)->name('koperasi.transaksi.aktif');
+        Route::get('riwayat-pembelian', RiwayatPembelian::class)->name('koperasi.riwayat.pembelian');
     });
 
     Route::prefix('admin')->middleware('CheckRole:ADMIN')->group(function () {

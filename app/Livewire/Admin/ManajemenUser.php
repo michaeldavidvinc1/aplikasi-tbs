@@ -51,16 +51,28 @@ class ManajemenUser extends Component
         $this->mode = 'create';
         $this->validate();
 
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'role' => $this->role,
-            'password' => Hash::make($this->password),
-        ]);
+        DB::beginTransaction();
+        try {
+            User::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'role' => $this->role,
+                'password' => Hash::make($this->password),
+            ]);
 
-        Flux::modal('user')->close();
-        toastr()->success('User berhasil ditambahkan');
-        $this->resetForm();
+            Flux::modal('user')->close();
+            DB::commit();
+            toastr()->success('User berhasil ditambahkan');
+            $this->resetForm();
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
     }
 
     public function edit($id)
@@ -77,27 +89,53 @@ class ManajemenUser extends Component
     public function update()
     {
         $this->validate();
+        DB::beginTransaction();
+        try {
+            $data = User::findOrFail($this->editId);
 
-        $data = User::findOrFail($this->editId);
+            $data->update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'role' => $this->role,
+            ]);
 
-        $data->update([
-            'name' => $this->name,
-            'email' => $this->email,
-            'role' => $this->role,
-        ]);
+            Flux::modal('user')->close();
+            DB::commit();
+            toastr()->success('User berhasil diperbarui');
+            $this->resetForm();
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
 
-        Flux::modal('user')->close();
-        toastr()->success('User berhasil diperbarui');
-        $this->resetForm();
+
     }
 
     public function destroy($id)
     {
         $this->resetForm();
-        $data = User::findOrFail($id);
-        $data->delete();
-        Flux::modal('delete-data')->close();
-        toastr()->success('User data berhasil di hapus');
+
+        DB::beginTransaction();
+        try {
+            $data = User::findOrFail($id);
+            $data->delete();
+            Flux::modal('delete-data')->close();
+            DB::commit();
+            toastr()->success('User data berhasil di hapus');
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
     }
 
     public function resetForm()

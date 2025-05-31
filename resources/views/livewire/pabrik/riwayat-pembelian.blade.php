@@ -5,7 +5,7 @@
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
-                <flux:breadcrumbs.item href="#" separator="slash">Dashboard</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item href="#" separator="slash">Beranda</flux:breadcrumbs.item>
                 <flux:breadcrumbs.item separator="slash">Riwayat Pembelian</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>

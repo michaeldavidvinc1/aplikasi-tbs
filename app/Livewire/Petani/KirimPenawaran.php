@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Petani;
 
+use App\Models\HargaTbs;
 use App\Models\TbsOffer;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -11,7 +13,7 @@ class KirimPenawaran extends Component
 {
 
     #[Validate('required|numeric')]
-    public $berat;
+    public $tonase;
     #[Validate('required')]
     public $kualitas;
     #[Validate('required')]
@@ -21,21 +23,34 @@ class KirimPenawaran extends Component
     {
         $this->validate();
 
-        TbsOffer::create([
-            'user_id' => Auth::user()->id,
-            'berat' => $this->berat,
-            'kualitas' => $this->kualitas,
-            'lokasi' => $this->lokasi,
-        ]);
+        DB::beginTransaction();
+        try {
+            TbsOffer::create([
+                'user_id' => Auth::user()->id,
+                'tonase' => $this->tonase,
+                'kualitas' => $this->kualitas,
+                'lokasi' => $this->lokasi,
+            ]);
 
-        toastr()->success('Penawaran berhasil dikirim');
-
-        // reset form (opsional)
-        $this->reset(['berat', 'kualitas', 'lokasi']);
+            DB::commit();
+            toastr()->success('Penawaran berhasil dikirim');
+            $this->reset(['tonase', 'kualitas', 'lokasi']);
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
     }
 
     public function render()
     {
-        return view('livewire.petani.kirim-penawaran');
+        $harga = HargaTbs::where('berlaku', '>', Carbon::now())->latest()->first();
+        return view('livewire.petani.kirim-penawaran',[
+            'harga' => $harga
+        ]);
     }
 }

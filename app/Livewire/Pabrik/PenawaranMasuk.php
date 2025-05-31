@@ -21,7 +21,7 @@ class PenawaranMasuk extends Component
     #[\Livewire\Attributes\Computed]
     public function penawaran()
     {
-        return TbsOffer::query()
+        return TbsOffer::with('user')
             ->where('status', '=', 'menunggu')
             ->when($this->tanggal, fn($q) => $q->whereDate('created_at', Carbon::parse($this->tanggal)))
             ->latest()
@@ -71,7 +71,7 @@ class PenawaranMasuk extends Component
             Transaksi::create([
                 'offer_id' => $offer->id,
                 'harga_beli' => $harga->harga_per_kilo,
-                'total_bayar' =>  $harga->harga_per_kilo * $offer->berat,
+                'total_bayar' =>  $harga->harga_per_kilo * $offer->tonase,
             ]);
 
             DB::commit();

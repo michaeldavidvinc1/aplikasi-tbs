@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\HargaTbs;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,10 +33,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'Pabrik',
-            'email' => 'pabrik@gmail.com',
-            'role' => 'PABRIK',
+            'name' => 'Koperasi',
+            'email' => 'koperasi@gmail.com',
+            'role' => 'KOPERASI',
             'password' => Hash::make('password'),
+        ]);
+
+        HargaTbs::create([
+           'harga_per_kilo' => 1500,
+            'berlaku' => Carbon::now()->addDay(7),
         ]);
     }
 }

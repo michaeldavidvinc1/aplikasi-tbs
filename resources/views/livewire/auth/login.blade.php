@@ -115,7 +115,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 <option value="">{{ __('Role') }}</option>
                 <option value="ADMIN">Admin</option>
                 <option value="PETANI">Petani</option>
-                <option value="PABRIK">Pabrik</option>
+                <option value="KOPERASI">Koperasi</option>
             </flux:select>
         </div>
 

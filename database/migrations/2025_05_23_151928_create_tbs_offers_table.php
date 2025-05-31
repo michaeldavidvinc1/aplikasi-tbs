@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('tbs_offers', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class, 'user_id');
-            $table->integer('berat');
+            $table->integer('tonase');
             $table->string('kualitas');
             $table->string('lokasi');
             $table->enum('status', array('menunggu', 'terima', 'tolak'))->default('menunggu');

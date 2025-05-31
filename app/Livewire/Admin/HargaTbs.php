@@ -25,15 +25,27 @@ class HargaTbs extends Component
     public function create()
     {
         $this->validate();
+        DB::beginTransaction();
+        try {
+            HargaTbsModel::create([
+                'harga_per_kilo' => $this->harga_per_kilo,
+                'berlaku' => $this->berlaku,
+            ]);
 
-        HargaTbsModel::create([
-            'harga_per_kilo' => $this->harga_per_kilo,
-            'berlaku' => $this->berlaku,
-        ]);
+            Flux::modal('create-harga-tbs')->close();
 
-        Flux::modal('create-harga-tbs')->close();
-        toastr()->success('Harga TBS berhasil ditambahkan');
-        $this->resetForm();
+            DB::commit();
+            toastr()->success('Harga TBS berhasil ditambahkan');
+            $this->resetForm();
+        } catch (\Exception $ex) {
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
     }
 
     public function edit($id)
@@ -51,25 +63,50 @@ class HargaTbs extends Component
     {
         $this->validate();
 
-        $data = HargaTbsModel::findOrFail($this->editId);
+        DB::beginTransaction();
+        try {
+            $data = HargaTbsModel::findOrFail($this->editId);
 
-        $data->update([
-            'harga_per_kilo' => $this->harga_per_kilo,
-            'berlaku' => $this->berlaku,
-        ]);
+            $data->update([
+                'harga_per_kilo' => $this->harga_per_kilo,
+                'berlaku' => $this->berlaku,
+            ]);
 
-        Flux::modal('create-harga-tbs')->close();
-        toastr()->success('Harga TBS berhasil diperbarui');
-        $this->resetForm();
+            Flux::modal('create-harga-tbs')->close();
+            DB::commit();
+            toastr()->success('Harga TBS berhasil diperbarui');
+            $this->resetForm();
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
     }
 
     public function destroy($id)
     {
         $this->resetForm();
-        $data = HargaTbsModel::findOrFail($id);
-        $data->delete();
-        Flux::modal('delete-data')->close();
-        toastr()->success('Harga TBS berhasil di hapus');
+        DB::beginTransaction();
+        try {
+            $data = HargaTbsModel::findOrFail($id);
+            $data->delete();
+            Flux::modal('delete-data')->close();
+            DB::commit();
+            toastr()->success('Harga TBS berhasil di hapus');
+        } catch (\Exception $ex){
+            DB::rollback();
+            \Log::error('Error: ' . $ex->getMessage());
+            LivewireAlert::title('Error!')
+                ->text($ex->getMessage())
+                ->error()
+                ->withCancelButton('OK')
+                ->show();
+        }
+
     }
 
     public function resetForm()
