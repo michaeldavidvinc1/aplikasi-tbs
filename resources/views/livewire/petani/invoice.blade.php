@@ -22,8 +22,8 @@
                 <thead class="bg-gray-100">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">#</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Berat</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kualitas</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tonsae</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kualitas TBS</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Lokasi</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Invoice</th>
@@ -33,7 +33,7 @@
                 @forelse ($invoices as $index => $invoice)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $invoices->firstItem() + $index }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $invoice->transaksi->offer->berat }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $invoice->transaksi->offer->tonase }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $invoice->transaksi->offer->kualitas }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $invoice->transaksi->offer->lokasi }}</td>
                         <td class="px-6 py-4">{{ $invoice->created_at->format('d M Y') }}</td>
