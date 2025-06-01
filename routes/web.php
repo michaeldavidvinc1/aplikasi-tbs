@@ -28,6 +28,7 @@ Route::view('dashboard', 'dashboard')
 Route::middleware(['auth'])->group(function () {
 
     Route::prefix('petani')->middleware('CheckRole:PETANI')->group(function () {
+        Route::get('/', \App\Livewire\Petani\Dashboard::class)->name('petani.dashboard');
         Route::get('kirim-penawaran', KirimPenawaran::class)->name('petani.kirim.penawaran');
         Route::get('riwayat-penawaran', RiwayatPenawaran::class)->name('petani.riwayat.penawaran');
         Route::get('riwayat-pembayaran', RiwayatPembayaran::class)->name('petani.riwayat.pembayaran');
@@ -35,12 +36,14 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('koperasi')->middleware('CheckRole:KOPERASI')->group(function () {
+        Route::get('/', \App\Livewire\Pabrik\Dashboard::class)->name('koperasi.dashboard');
         Route::get('penawaran-masuk', PenawaranMasuk::class)->name('koperasi.penawaran.masuk');
         Route::get('transaksi-aktif', TransaksiAktif::class)->name('koperasi.transaksi.aktif');
         Route::get('riwayat-pembelian', RiwayatPembelian::class)->name('koperasi.riwayat.pembelian');
     });
 
     Route::prefix('admin')->middleware('CheckRole:ADMIN')->group(function () {
+        Route::get('/', \App\Livewire\Admin\Dashboard::class)->name('admin.dashboard');
         Route::get('harga-tbs', HargaTbs::class)->name('admin.harga.tbs');
         Route::get('user', ManajemenUser::class)->name('admin.manajemen.user');
         Route::get('semua-penawaran', SemuaPenawaran::class)->name('admin.semua.penawaran');

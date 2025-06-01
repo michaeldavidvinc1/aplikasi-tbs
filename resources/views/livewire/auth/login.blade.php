@@ -52,7 +52,14 @@ new #[Layout('components.layouts.auth')] class extends Component {
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        if(Auth::user()->role == 'PETANI'){
+            $this->redirectIntended(default: route('petani.dashboard', absolute: false), navigate: true);
+        } elseif (Auth::user()->role == 'KOPERASI') {
+            $this->redirectIntended(default: route('koperasi.dashboard', absolute: false), navigate: true);
+        } else {
+            $this->redirectIntended(default: route('admin.dashboard', absolute: false), navigate: true);
+        }
+
     }
 
     /**

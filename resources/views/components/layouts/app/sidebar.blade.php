@@ -14,7 +14,7 @@
             <flux:navlist variant="outline">
                 @if(auth()->user()?->role === 'PETANI')
                     <flux:navlist.group :heading="__('Menu')" class="grid">
-                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
+                        <flux:navlist.item icon="home" :href="route('petani.dashboard')" :current="request()->routeIs('petani.dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
                         <flux:navlist.item icon="briefcase" :href="route('petani.kirim.penawaran')" :current="request()->routeIs('petani.kirim.penawaran')" wire:navigate>{{ __('Kirim Penawaran') }}</flux:navlist.item>
@@ -30,7 +30,7 @@
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'KOPERASI')
                     <flux:navlist.group :heading="__('Menu')" class="grid">
-                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
+                        <flux:navlist.item icon="home" :href="route('koperasi.dashboard')" :current="request()->routeIs('koperasi.dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
                         <flux:navlist.item icon="archive-box-arrow-down" :href="route('koperasi.penawaran.masuk')" :current="request()->routeIs('koperasi.penawaran.masuk')" wire:navigate>{{ __('Penawaran Masuk') }}</flux:navlist.item>
@@ -43,7 +43,7 @@
                     </flux:navlist.group>
                 @elseif(auth()->user()?->role === 'ADMIN')
                     <flux:navlist.group :heading="__('Menu')" class="grid">
-                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
+                        <flux:navlist.item icon="home" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
                         <flux:navlist.item icon="currency-dollar" :href="route('admin.harga.tbs')" :current="request()->routeIs('admin.harga.tbs')" wire:navigate>{{ __('Harga TBS') }}</flux:navlist.item>
