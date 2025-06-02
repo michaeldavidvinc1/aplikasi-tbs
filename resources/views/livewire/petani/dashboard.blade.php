@@ -6,7 +6,7 @@
         </div>
         <div class="ml-4">
             <h4 class="text-sm font-medium text-gray-600">Total TBS Terkirim</h4>
-            <div class="text-xl font-semibold text-gray-800">1,230</div>
+            <div class="text-xl font-semibold text-gray-800">{{$totalTbs}}</div>
         </div>
     </div>
 
@@ -17,7 +17,7 @@
         </div>
         <div class="ml-4">
             <h4 class="text-sm font-medium text-gray-600">Total Pendapatan</h4>
-            <div class="text-xl font-semibold text-gray-800">12</div>
+            <div class="text-xl font-semibold text-gray-800">Rp.{{ number_format($totalPendapatan, 0, ',', '.') }}</div>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         </div>
         <div class="ml-4">
             <h4 class="text-sm font-medium text-gray-600">Transaksi Diterima</h4>
-            <div class="text-xl font-semibold text-gray-800">326</div>
+            <div class="text-xl font-semibold text-gray-800">{{$transaksiDiterima}}</div>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
         </div>
         <div class="ml-4">
             <h4 class="text-sm font-medium text-gray-600">Harga TBS Hari Ini</h4>
-            <div class="text-xl font-semibold text-gray-800">Rp 2.500.000</div>
+            <div class="text-xl font-semibold text-gray-800">Rp.{{ number_format($hargaTbs->harga_per_kilo, 0, ',', '.') }}</div>
         </div>
     </div>
 </div>
