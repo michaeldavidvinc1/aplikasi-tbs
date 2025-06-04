@@ -1,13 +1,13 @@
 <div class="bg-white p-4 shadow rounded-xl w-full">
-    <h2 class="text-lg font-semibold mb-4">Tonase Yang Dikirim</h2>
-    <canvas id="berat-tbs" height="100"></canvas>
+    <h2 class="text-lg font-semibold mb-4">Tonase Yang Dibeli</h2>
+    <canvas id="tonase-beli" height="100"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @script
     <script>
         const labels = @json($labels);
         const data = @json($data);
-        const ctx = document.getElementById('berat-tbs');
+        const ctx = document.getElementById('tonase-beli');
 
         new Chart(ctx, {
             type: 'bar',

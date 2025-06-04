@@ -1,9 +1,10 @@
 <div class="overflow-x-auto bg-white p-4 shadow rounded-xl">
-    <h2 class="text-lg font-semibold mb-4">Riwayat Penawaran</h2>
+    <h2 class="text-lg font-semibold mb-4">Penawaran Terbaru</h2>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-100">
         <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">#</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Nama Petani</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tonase</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kualitas TBS</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Lokasi</th>
@@ -15,6 +16,7 @@
         @forelse ($penawarans as $index => $item)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $penawarans->firstItem() + $index }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $item->user->name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $item->tonase }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $item->kualitas }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $item->lokasi }}</td>

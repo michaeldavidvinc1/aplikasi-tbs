@@ -1,20 +1,20 @@
 <div class="bg-white p-4 shadow rounded-xl w-full">
-    <h2 class="text-lg font-semibold mb-4">Tonase Yang Dikirim</h2>
-    <canvas id="berat-tbs" height="100"></canvas>
+    <h2 class="text-lg font-semibold mb-4">Pengeluaran Bulanan</h2>
+    <canvas id="pengeluaran-bulanan" height="100"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @script
     <script>
         const labels = @json($labels);
         const data = @json($data);
-        const ctx = document.getElementById('berat-tbs');
+        const ctx = document.getElementById('pengeluaran-bulanan');
 
         new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Tonase TBS (Kg)',
+                    label: 'Total Bayar (Rp)',
                     data: data,
                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                     borderColor: 'rgba(59, 130, 246, 1)',
