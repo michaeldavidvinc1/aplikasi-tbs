@@ -47,8 +47,12 @@
         </div>
 
     </div>
-    <div class="mt-8">
-        <livewire:petani.pendapatan-bulanan/>
+    <div class="mt-4 w-full">
+        <div class="flex gap-4 mb-4">
+            <livewire:petani.pendapatan-bulanan/>
+            <livewire:petani.berat-tbs/>
+        </div>
+        <livewire:petani.dashboard-riwayat-penawaran/>
     </div>
 
 </div>
