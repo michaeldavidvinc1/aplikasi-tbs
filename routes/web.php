@@ -14,6 +14,7 @@ use App\Livewire\Petani\KirimPenawaran;
 use App\Livewire\Petani\RiwayatPembayaran;
 use App\Livewire\Petani\RiwayatPenawaran;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Volt\Volt;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -24,6 +25,7 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
 

@@ -6,6 +6,7 @@ use App\Models\Transaksi;
 use App\Models\Invoice as ModelsInvoice;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -26,6 +27,7 @@ class Invoice extends Component
             ->latest()
             ->paginate(10);
     }
+
 
     public function render()
     {
