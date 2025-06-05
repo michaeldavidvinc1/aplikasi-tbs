@@ -38,8 +38,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ $invoice->transaksi->offer->lokasi }}</td>
                         <td class="px-6 py-4">{{ $invoice->created_at->format('d M Y') }}</td>
                         <td class="px-6 py-4">
-                            <flux:button>
-                                <flux:icon.bolt />
+                            <flux:button size="sm">
+                                <flux:icon.arrow-down-on-square class="size-4" />
                             </flux:button>
                         </td>
                     </tr>

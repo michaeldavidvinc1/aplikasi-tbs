@@ -45,8 +45,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ $pembayarans->firstItem() + $index }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->tonase }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->kualitas }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->harga_beli }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->total_bayar }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Rp.{{ number_format($item->harga_beli, 0, ',', '.') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Rp.{{ number_format($item->total_bayar, 0, ',', '.') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @php
                                 $color = match($item->status) {

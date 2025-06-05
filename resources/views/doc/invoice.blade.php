@@ -7,6 +7,7 @@
         body {
             font-family: sans-serif;
             font-size: 12px;
+            margin: 20px;
         }
         table {
             width: 100%;
@@ -29,24 +30,37 @@
         .text-left {
             text-align: left;
         }
+        .text-center {
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 15px;
+        }
+        .footer {
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
 
-<h3 style="text-align: center; margin-bottom: 5px;">KOPERASI UNIT DESA "TUNAS MUDA"</h3>
-<p style="text-align: center; margin: 0;">KAMPUNG TELUK MERBAU KEC DAYUN KAB SIAK</p>
-<h4 style="text-align: center; margin-top: 5px;">BUKTI PEMBAYARAN HASIL TBS</h4>
+<div class="header">
+    <h3 style="text-align: center; margin-bottom: 5px;">KOPERASI UNIT DESA "TUNAS MUDA"</h3>
+    <p style="text-align: center; margin: 0;">KAMPUNG TELUK MERBAU KEC DAYUN KAB SIAK</p>
+    <h4 style="text-align: center; margin-top: 5px;">BUKTI TRANSAKSI TBS</h4>
+</div>
 
 <table class="no-border">
     <tr>
-        <td>Nama</td>
-        <td>: Supriyono</td>
-        <td>Kelompok</td>
-        <td>: 2</td>
+        <td>Nama Petani</td>
+        <td>: {{ $transaksi['offer']['user']['name'] }}</td>
+        <td>Tanggal</td>
+        <td>: {{ \Carbon\Carbon::parse($transaksi['created_at'])->format('d F Y') }}</td>
     </tr>
     <tr>
-        <td>Bulan</td>
-        <td>: Januari 2025</td>
+        <td>No. Transaksi</td>
+        <td>: {{ $transaksi['id'] }}</td>
+        <td>Status</td>
+        <td>: {{ ucfirst(str_replace('_', ' ', $transaksi['status'])) }}</td>
     </tr>
 </table>
 
@@ -54,77 +68,61 @@
     <thead>
     <tr>
         <th>NO</th>
-        <th>Harga Kotor</th>
-        <th>Insentif</th>
-        <th>Timbang di</th>
-        <th>Angkut</th>
-        <th>Harga Bersih</th>
+        <th>Tonase (kg)</th>
+        <th>Kualitas</th>
+        <th>Lokasi</th>
+        <th>Harga Beli (Rp/kg)</th>
+        <th>Total (Rp)</th>
     </tr>
     </thead>
     <tbody>
-    <tr><td>I</td><td>2,837</td><td>85</td><td>100</td><td>2,652.44</td></tr>
-    <tr><td>II</td><td>2,664</td><td>85</td><td>100</td><td>2,479.00</td></tr>
-    <tr><td>III</td><td>2,665</td><td>85</td><td>100</td><td>2,480.00</td></tr>
-    <tr><td>IV</td><td colspan="4" class="text-right">Total Pengurangan</td><td>(185.00)</td></tr>
+    <tr>
+        <td>1</td>
+        <td>{{ number_format($transaksi['offer']['tonase'], 0, ',', '.') }}</td>
+        <td>{{ $transaksi['offer']['kualitas'] }}</td>
+        <td>{{ $transaksi['offer']['lokasi'] }}</td>
+        <td>{{ number_format($transaksi['harga_beli'], 0, ',', '.') }}</td>
+        <td>{{ number_format($transaksi['total_bayar'], 0, ',', '.') }}</td>
+    </tr>
     </tbody>
 </table>
 
 <table>
     <thead>
     <tr>
-        <th>PANEN</th>
-        <th>TONASE</th>
-        <th>JUMLAH HARGA</th>
+        <th colspan="2">RINCIAN PEMBAYARAN</th>
     </tr>
     </thead>
     <tbody>
-    <tr><td>I</td><td>3,455</td><td>9,164,180</td></tr>
-    <tr><td>II</td><td>3,200</td><td>7,932,800</td></tr>
-    <tr><td>III</td><td>3,150</td><td>7,812,000</td></tr>
-    <tr><td>IV</td><td></td><td></td></tr>
-    <tr><th>JUMLAH</th><th>9,805</th><th>24,908,980</th></tr>
-    </tbody>
-</table>
-
-<h4>TABUNGAN DAN POTONGAN:</h4>
-
-<table>
-    <thead>
     <tr>
-        <th>TABUNGAN</th>
-        <th></th>
+        <td class="text-left">Total Harga</td>
+        <td class="text-right">{{ number_format($transaksi['total_bayar'], 0, ',', '.') }}</td>
     </tr>
-    </thead>
-    <tbody>
-    <tr><td>1. Peremajaan</td><td>-</td></tr>
-    <tr><td>2. Korban</td><td>-</td></tr>
-    <tr><td>3. Pembiayaan</td><td>-</td></tr>
-    </tbody>
-</table>
-
-<table>
-    <thead>
-    <tr>
-        <th>POTONGAN</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr><td>1. Bank</td><td>7,700,792</td></tr>
-    <tr><td>2. Pupuk</td><td>3,846,539</td></tr>
-    <tr><td>3. Korban</td><td>250,000</td></tr>
     </tbody>
     <tfoot>
     <tr>
-        <th>JUMLAH POTONGAN</th>
-        <th>11,797,331</th>
-    </tr>
-    <tr>
-        <th>TERIMA BERSIH</th>
-        <th>13,111,649</th>
+        <th class="text-left">TOTAL DITERIMA</th>
+        <th class="text-right">{{ number_format($transaksi['total_bayar'], 0, ',', '.') }}</th>
     </tr>
     </tfoot>
 </table>
+
+<div class="footer">
+    <table class="no-border">
+        <tr>
+            <td class="text-center" width="50%">
+                <p>Petani,</p>
+                <br><br><br>
+                <p>( {{ $transaksi['offer']['user']['name'] }} )</p>
+            </td>
+            <td class="text-center" width="50%">
+                <p>Koperasi,</p>
+                <br><br><br>
+                <p>( Admin Koperasi )</p>
+            </td>
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>

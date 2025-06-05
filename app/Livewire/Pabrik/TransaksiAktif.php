@@ -33,6 +33,7 @@ class TransaksiAktif extends Component
 
     public function bayar($id){
         $transaksi = Transaksi::with('offer.user')->findOrFail($id);
+//        dd($transaksi->toArray());
         DB::beginTransaction();
         try {
             $transaksi->status = 'sudah bayar';
