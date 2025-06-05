@@ -22,6 +22,7 @@
                 <thead class="bg-gray-100">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">#</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Petani</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tonase</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kualitas TBS</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Harga Beli</th>
@@ -35,6 +36,7 @@
                 @forelse ($transaksis as $index => $item)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $transaksis->firstItem() + $index }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->user->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->tonase }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->kualitas }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">Rp.{{ number_format($item->harga_beli, 0, ',', '.') }}</td>
