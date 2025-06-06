@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\CheckRole;
 use App\Livewire\Admin\HargaTbs;
+use App\Livewire\Admin\LaporanBulanan;
 use App\Livewire\Admin\ManajemenUser;
 use App\Livewire\Admin\SemuaInvoice;
 use App\Livewire\Admin\SemuaPenawaran;
@@ -51,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('semua-penawaran', SemuaPenawaran::class)->name('admin.semua.penawaran');
         Route::get('semua-transaksi', SemuaTransaksi::class)->name('admin.semua.transaksi');
         Route::get('semua-invoice', SemuaInvoice::class)->name('admin.semua.invoice');
+        Route::get('laporan-bulanan', LaporanBulanan::class)->name('admin.laporan.bulanan');
     });
 
     Route::redirect('settings', 'settings/profile');

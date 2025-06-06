@@ -62,7 +62,7 @@
                         <flux:navlist.item icon="wallet" :href="route('admin.semua.invoice')" :current="request()->routeIs('admin.semua.invoice')" wire:navigate>{{ __('Semua Invoice') }}</flux:navlist.item>
                     </flux:navlist.group>
                     <flux:navlist.group class="grid">
-                        <flux:navlist.item icon="document-arrow-down" :href="route('login')" :current="request()->routeIs('login')" wire:navigate>{{ __('Laporan Bulanan') }}</flux:navlist.item>
+                        <flux:navlist.item icon="document-arrow-down" :href="route('admin.laporan.bulanan')" :current="request()->routeIs('admin.laporan.bulanan')" wire:navigate>{{ __('Laporan Bulanan') }}</flux:navlist.item>
                     </flux:navlist.group>
                 @endif
             </flux:navlist>
