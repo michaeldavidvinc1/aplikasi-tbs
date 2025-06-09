@@ -16,6 +16,7 @@ class Dashboard extends Component
     public $totalTonase;
     public $transaksiAktif;
     public $hargaTbs;
+    public $isExpired;
 
     public function mount(){
         $this->totalPembelian = Transaksi::where('status', 'sudah bayar')->sum('total_bayar');
@@ -24,7 +25,17 @@ class Dashboard extends Component
             ->where('transaksis.status', 'sudah bayar')
             ->sum('tbs_offers.tonase');
         $this->transaksiAktif = Transaksi::where('status', 'belum bayar')->count();
-        $this->hargaTbs = HargaTbs::where('berlaku', '>', Carbon::now())->latest()->first();
+        $hargaLatest = HargaTbs::where('berlaku', '>', now())->latest()->first();
+
+        if (!$hargaLatest) {
+            // Ambil data expired terbaru
+            $hargaLatest = HargaTbs::latest()->first();
+            $this->isExpired = true;
+        } else {
+            $this->isExpired = false;
+        }
+
+        $this->hargaTbs = $hargaLatest;
     }
     public function render()
     {

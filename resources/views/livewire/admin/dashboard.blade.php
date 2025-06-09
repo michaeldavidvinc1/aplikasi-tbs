@@ -41,6 +41,11 @@
             <div class="ml-4">
                 <h4 class="text-sm font-medium text-gray-600">Harga TBS Hari Ini</h4>
                 <div class="text-xl font-semibold text-gray-800">Rp.{{ number_format($hargaTbs->harga_per_kilo, 0, ',', '.') }}</div>
+                @if($isExpired)
+                    <div class="text-xs text-red-500 mt-1">
+                        *Harga ini sudah tidak berlaku sejak {{ \Carbon\Carbon::parse($hargaTbs->berlaku)->format('d M Y') }}
+                    </div>
+                @endif
             </div>
         </div>
 

@@ -17,11 +17,23 @@ class Dashboard extends Component
     public $tonaseTbs;
     public $hargaTbs;
 
+    public $isExpired;
+
     public function mount(){
         $this->totalUser = User::count();
         $this->totalTransaksi = Transaksi::count();
         $this->tonaseTbs = TbsOffer::where('status', '=', 'terima')->sum('tonase');
-        $this->hargaTbs = HargaTbs::where('berlaku', '>', Carbon::now())->latest()->first();
+        $hargaLatest = HargaTbs::where('berlaku', '>', now())->latest()->first();
+
+        if (!$hargaLatest) {
+            // Ambil data expired terbaru
+            $hargaLatest = HargaTbs::latest()->first();
+            $this->isExpired = true;
+        } else {
+            $this->isExpired = false;
+        }
+
+        $this->hargaTbs = $hargaLatest;
     }
     public function render()
     {
