@@ -115,25 +115,26 @@
 </table>
 
 <div class="footer">
-    <table class="no-border">
+    <table class="no-border" style="width: 100%; text-align: center;">
         <tr>
-            <td class="text-center" width="33%">
+            <td style="width: 33%; vertical-align: top; text-align: center;">
                 <p>Petani,</p>
                 <br><br><br>
                 <p>( {{ $transaksi['offer']['user']['name'] }} )</p>
             </td>
-            <td class="text-center" width="33%">
+            <td style="width: 33%; vertical-align: top; text-align: center">
                 <p>Koperasi,</p>
                 <br><br><br>
                 <p>( <span style="display: inline-block; min-width: 100px;">&nbsp;</span> )</p>
             </td>
-            <td class="text-center" width="33%">
+            <td style="width: 33%; vertical-align: top;text-align: center;">
                 <p>Kasir,</p>
                 <br><br><br>
                 <p>( <span style="display: inline-block; min-width: 100px;">&nbsp;</span> )</p>
             </td>
         </tr>
     </table>
+
 </div>
 
 </body>
