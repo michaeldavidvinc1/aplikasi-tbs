@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-8">
     <div class="flex justify-between items-center mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-600">Kirim Penawaran</h1>
+            <h1 class="text-2xl font-bold text-gray-600 dark:text-white">Kirim Penawaran</h1>
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
@@ -14,7 +14,10 @@
         <form wire:submit.prevent="save" class="space-y-6 max-w-xl w-full">
             <flux:field>
                 <flux:label>Harga TBS</flux:label>
-                <flux:input type="number" value="{{$harga->harga_per_kilo}}" disabled />
+                <flux:input type="number" value="{{ $harga->harga_per_kilo ?? 0 }}" readonly />
+                @if(!$harga)
+                    <p class="text-xs text-red-500">* Tidak ada harga tbs yang berlaku silahkan hubungi admin</p>
+                @endif
             </flux:field>
 
             <flux:field>

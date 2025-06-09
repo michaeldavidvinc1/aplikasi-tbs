@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-8">
     <div class="flex justify-between items-center mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-600">Riwayat Penawaran</h1>
+            <h1 class="text-2xl font-bold text-gray-600 dark:text-white">Riwayat Penawaran</h1>
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
