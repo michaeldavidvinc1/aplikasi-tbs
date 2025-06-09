@@ -33,6 +33,18 @@
             </flux:field>
 
             <flux:field>
+                <flux:label>Nama Supir</flux:label>
+                <flux:input type="text" wire:model.defer="supir" />
+                <flux:error name="supir" />
+            </flux:field>
+
+            <flux:field>
+                <flux:label>Plat Mobil</flux:label>
+                <flux:input type="text" wire:model.defer="plat" />
+                <flux:error name="plat" />
+            </flux:field>
+
+            <flux:field>
                 <flux:label>Lokasi</flux:label>
                 <flux:input type="text" wire:model.defer="lokasi" />
                 <flux:error name="lokasi" />

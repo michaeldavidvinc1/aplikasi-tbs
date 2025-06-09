@@ -18,6 +18,10 @@ class KirimPenawaran extends Component
     #[Validate('required')]
     public $kualitas;
     #[Validate('required')]
+    public $supir;
+    #[Validate('required')]
+    public $plat;
+    #[Validate('required')]
     public $lokasi;
 
     public function save()
@@ -30,12 +34,14 @@ class KirimPenawaran extends Component
                 'user_id' => Auth::user()->id,
                 'tonase' => $this->tonase,
                 'kualitas' => $this->kualitas,
+                'supir' => $this->supir,
+                'plat' => $this->plat,
                 'lokasi' => $this->lokasi,
             ]);
 
             DB::commit();
             toastr()->success('Penawaran berhasil dikirim');
-            $this->reset(['tonase', 'kualitas', 'lokasi']);
+            $this->reset(['tonase', 'kualitas', 'lokasi', 'supir', 'plat']);
         } catch (\Exception $ex){
             DB::rollback();
             \Log::error('Error: ' . $ex->getMessage());

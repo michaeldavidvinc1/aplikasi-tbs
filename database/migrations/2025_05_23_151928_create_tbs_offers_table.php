@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'user_id');
             $table->integer('tonase');
             $table->string('kualitas');
+            $table->string('supir');
+            $table->string('plat');
             $table->string('lokasi');
             $table->enum('status', array('menunggu', 'terima', 'tolak'))->default('menunggu');
             $table->timestamps();

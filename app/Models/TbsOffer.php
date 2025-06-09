@@ -14,6 +14,8 @@ class TbsOffer extends Model
     protected $fillable = [
         'user_id',
         'tonase',
+        'supir',
+        'plat',
         'kualitas',
         'lokasi',
         'status',
