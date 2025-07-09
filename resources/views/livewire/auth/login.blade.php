@@ -56,7 +56,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
             $this->redirectIntended(default: route('petani.dashboard', absolute: false), navigate: true);
         } elseif (Auth::user()->role == 'KOPERASI') {
             $this->redirectIntended(default: route('koperasi.dashboard', absolute: false), navigate: true);
-        } else {
+        } elseif (Auth::user()->role == 'PIMPINAN') {
+            $this->redirectIntended(default: route('pimpinan.dashboard', absolute: false), navigate: true);
+        }else {
             $this->redirectIntended(default: route('admin.dashboard', absolute: false), navigate: true);
         }
 
