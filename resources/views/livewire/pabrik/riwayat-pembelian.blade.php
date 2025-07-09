@@ -16,8 +16,7 @@
             <flux:input type="date" wire:model.live="tanggal" />
         </div>
         <div>
-            <flux:button wire:click="cetakLaporan" variant="primary" class="text-xs flex gap-2">
-                <flux:icon.archive-box-arrow-down class="size-4" />
+            <flux:button wire:click="cetakLaporan" variant="primary" class="flex text-xs">
                 Cetak Laporan
             </flux:button>
         </div>

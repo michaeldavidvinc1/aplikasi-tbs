@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -37,23 +36,54 @@
         .header {
             margin-bottom: 15px;
         }
+        .kop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .kop img {
+            width: 80px;
+            height: auto;
+        }
+        .kop-title {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
         .footer {
             margin-top: 30px;
         }
         .ttd {
             display: flex;
-            justify-content:  space-between;
+            justify-content: space-between;
             align-items: center;
         }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1 style="text-align: center; margin-bottom: 18px;">Laporan Pembelian</h1>
+<!-- Kop Surat -->
+<div class="kop" style="width: 100%; margin-bottom: 30px;">
+    <table style="width: 100%; border: none; border-collapse: collapse;">
+        <tr>
+            <td style="width: 80px; border: none;">
+                <img src="./pohon.jpg" alt="Logo Kiri" style="width: 80px;">
+            </td>
+            <td style="text-align: center; border: none;">
+                <div style="font-size: 16px; font-weight: bold; text-transform: uppercase;">Laporan Pembelian</div>
+                <div style="font-size: 14px; margin-top: 4px;">Koperasi Produsen Tunas Muda</div>
+            </td>
+            <td style="width: 80px; text-align: right; border: none;">
+                <img src="./bunga.jpg" alt="Logo Kanan" style="width: 80px;">
+            </td>
+        </tr>
+    </table>
 </div>
 
-
+<!-- Tabel Transaksi -->
 <table>
     <thead>
     <tr>
@@ -70,29 +100,29 @@
     <tbody>
     @forelse ($transaksi as $index => $item)
         <tr>
-            <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->user->name }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->tonase }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->kualitas }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ $item->harga_beli }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ $item->total_bayar }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @php
-                                $color = match($item->status) {
-                                    'belum bayar' => 'bg-gray-100 text-gray-800',
-                                    'sudah bayar' => 'bg-green-100 text-green-800',
-                                    default => 'bg-gray-100 text-gray-800',
-                                };
-                            @endphp
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $color }}">
-                                            {{ ucfirst($item->status) }}
-                                        </span>
-                        </td>
-                        <td class="px-6 py-4">{{ $item->created_at->format('d M Y') }}</td>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $item->offer->user->name }}</td>
+            <td>{{ $item->offer->tonase }}</td>
+            <td>{{ $item->offer->kualitas }}</td>
+            <td>{{ number_format($item->harga_beli, 0, ',', '.') }}</td>
+            <td>{{ number_format($item->total_bayar, 0, ',', '.') }}</td>
+            <td>
+                @php
+                    $color = match($item->status) {
+                        'belum bayar' => 'background-color:#eee; color:#555;',
+                        'sudah bayar' => 'background-color:#c8f7c5; color:#2b662e;',
+                        default => 'background-color:#eee; color:#555;',
+                    };
+                @endphp
+                <span style="padding: 2px 6px; font-size: 10px; font-weight: bold; border-radius: 4px; {{ $color }}">
+                    {{ ucfirst($item->status) }}
+                </span>
+            </td>
+            <td>{{ $item->created_at->format('d M Y') }}</td>
         </tr>
     @empty
         <tr>
-            <td colspan="8" class="px-6 py-4 text-center text-gray-500">Tidak ada data aktif transaksi.</td>
+            <td colspan="8">Tidak ada data aktif transaksi.</td>
         </tr>
     @endforelse
     </tbody>
