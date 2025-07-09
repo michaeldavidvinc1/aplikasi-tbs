@@ -61,6 +61,19 @@
                     <flux:navlist.group class="grid">
                         <flux:navlist.item icon="wallet" :href="route('admin.semua.invoice')" :current="request()->routeIs('admin.semua.invoice')" wire:navigate>{{ __('Semua Invoice') }}</flux:navlist.item>
                     </flux:navlist.group>
+                @elseif(auth()->user()?->role === 'PIMPINAN')
+                    <flux:navlist.group :heading="__('Menu')" class="grid">
+                        <flux:navlist.item icon="home" :href="route('pimpinan.dashboard')" :current="request()->routeIs('pimpinan.dashboard')" wire:navigate>{{ __('Beranda') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="archive-box" :href="route('pimpinan.semua.penawaran')" :current="request()->routeIs('pimpinan.semua.penawaran')" wire:navigate>{{ __('Semua Penawaran') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="shopping-bag" :href="route('pimpinan.semua.transaksi')" :current="request()->routeIs('pimpinan.semua.transaksi')" wire:navigate>{{ __('Semua Transaksi') }}</flux:navlist.item>
+                    </flux:navlist.group>
+                    <flux:navlist.group class="grid">
+                        <flux:navlist.item icon="wallet" :href="route('pimpinan.semua.invoice')" :current="request()->routeIs('pimpinan.semua.invoice')" wire:navigate>{{ __('Semua Invoice') }}</flux:navlist.item>
+                    </flux:navlist.group>
                 @endif
             </flux:navlist>
 

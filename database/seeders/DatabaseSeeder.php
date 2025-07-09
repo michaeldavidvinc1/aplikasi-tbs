@@ -39,6 +39,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
+        User::factory()->create([
+            'name' => 'Pimpinan',
+            'email' => 'pimpinan@gmail.com',
+            'role' => 'PIMPINAN',
+            'password' => Hash::make('password'),
+        ]);
+
         HargaTbs::create([
            'harga_per_kilo' => 1500,
             'berlaku' => Carbon::now()->addDay(7),

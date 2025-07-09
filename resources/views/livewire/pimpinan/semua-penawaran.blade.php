@@ -1,25 +1,29 @@
 <div class="flex flex-col gap-8">
     <div class="flex justify-between items-center mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-600 dark:text-white">Riwayat Pembelian</h1>
+            <h1 class="text-2xl font-bold text-gray-600 dark:text-white">Semua Penawaran</h1>
         </div>
         <div class="text-sm ">
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="#" separator="slash">Beranda</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item separator="slash">Riwayat Pembelian</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item separator="slash">Semua Penawaran</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
     </div>
-    <div class="mb-6 flex items-center gap-4 justify-between">
+    <div class="mb-6 flex items-center gap-4">
+        <div class="flex flex-col gap-2">
+            <label class="block text-sm font-medium ">Status</label>
+            <flux:select wire:model.live="status" placeholder="Pilih Status...">
+                <option value="">Semua</option>
+                <option value="menunggu">Menunggu</option>
+                <option value="setuju">Setuju</option>
+                <option value="ditolak">Ditolak</option>
+            </flux:select>
+        </div>
+
         <div class="flex flex-col gap-2">
             <label class="block text-sm font-medium ">Tanggal</label>
             <flux:input type="date" wire:model.live="tanggal" />
-        </div>
-        <div>
-            <flux:button wire:click="cetakLaporan" variant="primary" class="text-xs flex gap-2">
-                <flux:icon.archive-box-arrow-down class="size-4" />
-                Cetak Laporan
-            </flux:button>
         </div>
     </div>
     <div>
@@ -31,26 +35,25 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Nama Petani</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tonase</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kualitas TBS</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Harga Beli</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Total Harga</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Lokasi</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Status</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
-                @forelse ($transaksis as $index => $item)
+                @forelse ($penawarans as $index => $item)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $transaksis->firstItem() + $index }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->user->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->tonase }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->offer->kualitas }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->harga_beli }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->total_bayar }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $penawarans->firstItem() + $index }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->user->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->tonase }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->kualitas }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $item->lokasi }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @php
                                 $color = match($item->status) {
-                                    'belum bayar' => 'bg-gray-100 text-gray-800',
-                                    'sudah bayar' => 'bg-green-100 text-green-800',
+                                    'menunggu' => 'bg-gray-100 text-gray-800',
+                                    'terima' => 'bg-green-100 text-green-800',
+                                    'tolak' => 'bg-red-100 text-red-800',
                                     default => 'bg-gray-100 text-gray-800',
                                 };
                             @endphp
@@ -62,7 +65,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="px-6 py-4 text-center text-gray-500">Tidak ada data aktif transaksi.</td>
+                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada data penawaran.</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -70,7 +73,7 @@
         </div>
 
         <div class="mt-4">
-            {{ $transaksis->links() }}
+            {{ $penawarans->links() }}
         </div>
     </div>
 </div>

@@ -55,6 +55,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('laporan-bulanan', LaporanBulanan::class)->name('admin.laporan.bulanan');
     });
 
+    Route::prefix('pimpinan')->middleware('CheckRole:PIMPINAN')->group(function () {
+        Route::get('/', \App\Livewire\Pimpinan\Dashboard::class)->name('pimpinan.dashboard');
+        Route::get('semua-penawaran', \App\Livewire\Pimpinan\SemuaPenawaran::class)->name('pimpinan.semua.penawaran');
+        Route::get('semua-transaksi', \App\Livewire\Pimpinan\SemuaTransaksi::class)->name('pimpinan.semua.transaksi');
+        Route::get('semua-invoice', \App\Livewire\Pimpinan\SemuaInvoice::class)->name('pimpinan.semua.invoice');
+    });
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');

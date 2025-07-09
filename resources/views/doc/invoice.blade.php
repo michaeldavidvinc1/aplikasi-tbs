@@ -128,7 +128,7 @@
                 <p>( <span style="display: inline-block; min-width: 100px;">&nbsp;</span> )</p>
             </td>
             <td style="width: 33%; vertical-align: top;text-align: center;">
-                <p>Kasir,</p>
+                <p>Admin,</p>
                 <br><br><br>
                 <p>( <span style="display: inline-block; min-width: 100px;">&nbsp;</span> )</p>
             </td>

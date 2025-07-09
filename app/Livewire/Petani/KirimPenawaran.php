@@ -7,12 +7,14 @@ use App\Models\TbsOffer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class KirimPenawaran extends Component
 {
 
+    public $hargaTbs;
     #[Validate('required|numeric')]
     public $tonase;
     #[Validate('required')]
@@ -30,6 +32,11 @@ class KirimPenawaran extends Component
 
         DB::beginTransaction();
         try {
+
+            if(!$this->hargaTbs){
+                throw new \Exception('Harga TBS kosong, silahkan hubungi admin');
+            }
+
             TbsOffer::create([
                 'user_id' => Auth::user()->id,
                 'tonase' => $this->tonase,
@@ -55,9 +62,9 @@ class KirimPenawaran extends Component
 
     public function render()
     {
-        $harga = HargaTbs::where('berlaku', '>', Carbon::now())->latest()->first();
+        $this->hargaTbs = HargaTbs::where('berlaku', '>', Carbon::now())->latest()->first();
         return view('livewire.petani.kirim-penawaran',[
-            'harga' => $harga
+            'harga' => $this->hargaTbs
         ]);
     }
 }

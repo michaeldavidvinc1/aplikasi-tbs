@@ -123,6 +123,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 <option value="ADMIN">Admin</option>
                 <option value="PETANI">Petani</option>
                 <option value="KOPERASI">Koperasi</option>
+                <option value="PIMPINAN">Pimpinan</option>
             </flux:select>
         </div>
 
