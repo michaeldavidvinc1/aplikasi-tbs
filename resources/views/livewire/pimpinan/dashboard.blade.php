@@ -52,9 +52,9 @@
     </div>
     <div class="mt-4 w-full">
         <div class="flex gap-4 mb-4">
-            <livewire:admin.total-transaksi />
-            <livewire:admin.tonase-masuk />
+            <livewire:pimpinan.total-transaksi />
+            <livewire:pimpinan.tonase-masuk />
         </div>
-        <livewire:admin.transaksi-terbaru />
+        <livewire:pimpinan.transaksi-terbaru />
     </div>
 </div>
