@@ -66,7 +66,7 @@
 <body>
 
 <!-- Kop Surat -->
-<div class="kop" style="width: 100%; margin-bottom: 30px;">
+<div class="kop" style="width: 100%; margin-bottom: 10px;">
     <table style="width: 100%; border: none; border-collapse: collapse;">
         <tr>
             <td style="width: 80px; border: none;">
@@ -82,6 +82,9 @@
         </tr>
     </table>
 </div>
+
+<!-- Garis Bawah Kop -->
+<div style="border-top: 2px solid #000; margin-bottom: 20px;"></div>
 
 <!-- Tabel Transaksi -->
 <table>
