@@ -28,6 +28,7 @@ class RiwayatPembelian extends Component
     public function cetakLaporan(){
         $transaksi = Transaksi::with('offer.user')
             ->where('status', 'sudah bayar')
+            ->when($this->tanggal, fn($q) => $q->whereDate('created_at', Carbon::parse($this->tanggal)))
             ->get();
         $pdf = Pdf::loadView('doc.laporan-pembelian', compact('transaksi'));
         return response()->streamDownload(function () use ($pdf) {
