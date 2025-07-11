@@ -70,11 +70,11 @@
                                 <flux:button size="sm" class="text-xs" wire:click="edit({{ $item->id }})">Edit
                                 </flux:button>
                             </flux:modal.trigger>
-                            <flux:modal.trigger name="delete-data">
-                                <flux:button variant="danger" size="sm" class="text-xs"
-                                             wire:click="$set('selectedId', {{ $item->id }})">Delete
-                                </flux:button>
-                            </flux:modal.trigger>
+{{--                            <flux:modal.trigger name="delete-data">--}}
+{{--                                <flux:button variant="danger" size="sm" class="text-xs"--}}
+{{--                                             wire:click="$set('selectedId', {{ $item->id }})">Delete--}}
+{{--                                </flux:button>--}}
+{{--                            </flux:modal.trigger>--}}
                         </td>
                     </tr>
                 @empty
