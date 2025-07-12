@@ -73,7 +73,7 @@
         </div>
 
         <div class="mt-4">
-            {{ $invoices->links() }}
+            {{ $pembayarans->links() }}
         </div>
     </div>
 </div>
