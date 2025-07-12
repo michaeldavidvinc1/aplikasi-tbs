@@ -3,6 +3,7 @@
 namespace App\Livewire\Pimpinan;
 
 use App\Models\Invoice as ModelsInvoice;
+use App\Models\Transaksi;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,21 +12,22 @@ class SemuaInvoice extends Component
 {
     use  WithPagination;
 
+    public $status = '';
     public $tanggal = '';
 
     #[\Livewire\Attributes\Computed]
-    public function invoice()
+    public function pembayaran()
     {
-        return ModelsInvoice::with(['transaksi.offer.user'])
-            ->when($this->tanggal, fn($q) => $q->whereDate('created_at', Carbon::parse($this->tanggal))
-            )
+        return Transaksi::with('offer.user')
+            ->when($this->status, fn($q) => $q->where('status', $this->status))
+            ->when($this->tanggal, fn($q) => $q->whereDate('created_at', Carbon::parse($this->tanggal)))
             ->latest()
             ->paginate(10);
     }
     public function render()
     {
         return view('livewire.pimpinan.semua-invoice', [
-            'invoices' => $this->invoice,
+            'pembayarans' => $this->pembayaran,
         ]);
     }
 }
