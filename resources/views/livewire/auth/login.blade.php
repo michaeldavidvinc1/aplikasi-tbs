@@ -95,7 +95,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')"
+    <x-auth-header :title="__('SISTEM INFORMASI PEMBELIAN TBS PADA KOPERASI PRODUSEN TUNAS MUDA BERBASIS WEB')"
                    :description="__('Enter your email and password below to log in')"/>
 
     <!-- Session Status -->
